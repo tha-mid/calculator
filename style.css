@@ -1,0 +1,69 @@
+.body {}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    border: solid;
+    width: 600px;
+    padding: 10px;
+}
+
+hr {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+#screen {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#memory {
+    height: 50px;
+    width: 550px;
+    border-top: solid;
+    border-left: solid;
+    border-right: solid;
+    margin: 20px 20px 0 20px;
+}
+
+#current {
+    height: 100px;
+    width: 450px;
+    border-bottom: solid;
+    border-right: solid;
+    margin: 0 20px 20px 0;
+}
+
+#operator {
+    height: 100px;
+    width: 100px;
+    border-left: solid;
+    border-bottom: solid;
+    margin: 0 0 20px 20px; 
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+
+
+.btn {
+    height: 60px;
+    width: 60px;
+    font-size: 30px;
+    margin: 10px;
+}
+
+#equal {
+    width: 205px;
+}
+
+.result {}
+
+.withDot {}
