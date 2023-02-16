@@ -1,11 +1,51 @@
-.body {}
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(225, 208, 232);
+}
+
+.header {
+    display: flex;
+    height: 100px;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    height: 80px;
+    margin: 0px;
+}
+
+.footer p {
+    margin: 5px;
+    padding: 5px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+}
+
+.github {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+}
 
 .calculator {
     display: flex;
     flex-direction: column;
     border: solid;
-    width: 600px;
+    border-radius: 10px;
+    width: 550px;
     padding: 10px;
+    background-color: rgb(102, 124, 204);
 }
 
 hr {
@@ -21,28 +61,52 @@ hr {
 }
 
 #memory {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
     height: 50px;
-    width: 550px;
+    width: 500px;
+    background-color: rgb(249, 252, 255);
     border-top: solid;
     border-left: solid;
     border-right: solid;
-    margin: 20px 20px 0 20px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 25px 25px 0 25px;
+    font-size: 40px;
 }
+.under {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 550px;
 
+}
 #current {
-    height: 100px;
-    width: 450px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 420px;
+    height: 80px;
+    background-color: rgb(249, 252, 255);
     border-bottom: solid;
     border-right: solid;
-    margin: 0 20px 20px 0;
+    border-bottom-right-radius: 10px;
+    margin: 0 25px 25px 0;
+    font-size: 50px;
 }
 
 #operator {
-    height: 100px;
-    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    background-color: rgb(249, 252, 255);
     border-left: solid;
     border-bottom: solid;
-    margin: 0 0 20px 20px; 
+    border-bottom-left-radius: 10px;
+    margin: 0 0 25px 25px;
+    font-size: 50px;
 }
 
 .buttons {
@@ -51,17 +115,26 @@ hr {
     justify-content: space-around;
 }
 
-
-
 .btn {
-    height: 60px;
-    width: 60px;
-    font-size: 30px;
+    height: 70px;
+    width: 70px;
+    font-size: 40px;
     margin: 10px;
+    border-radius: 8px;
+    border-width: 3px;
+}
+
+#percent, .op {
+    background-color: rgb(240, 145, 145);
+}
+
+#clear, #backspace {
+    background-color: rgb(156, 235, 140);
 }
 
 #equal {
     width: 205px;
+    background-color: rgb(144, 187, 225);
 }
 
 .result {}
