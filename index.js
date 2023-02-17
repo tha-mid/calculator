@@ -2,12 +2,17 @@ function operate (num1, num2, operator) {
 
     num1 = Number(num1);
     num2 = Number(num2);
+
+    if (num2 === 0 && operator === '/') {
+        return 'Error';
+    } else {
     
-    if (operator === '+') return (num1 + num2);
-    if (operator === '-') return (num1 - num2);
-    if (operator === '*') return (num1 * num2);
-    if (operator === '/') return (num1 / num2);
-    if (operator === '%') return (num1 / 100);
+        if (operator === '+') return (num1 + num2);
+        if (operator === '-') return (num1 - num2);
+        if (operator === '*') return (num1 * num2);
+        if (operator === '/') return (num1 / num2);
+        if (operator === '%') return (num1 / 100);
+    }
 
 }
 
@@ -39,8 +44,10 @@ function start () {
     document.getElementById("percent").addEventListener("click", function() {
         console.log('aaa')
         let num1 = document.getElementById("current").textContent;
-        document.getElementById("current").textContent = operate(num1, '', '%');
-        document.getElementById("percent").blur();
+        if (num1 != 'Error') {
+            document.getElementById("current").textContent = operate(num1, '', '%');
+            document.getElementById("percent").blur();
+        }
     });
 
     document.getElementById("equal").addEventListener("click", equalBtn);
@@ -111,7 +118,10 @@ function displayNumber (btnValue) {
 
     value = '' + value + btnValue;
     
-    document.getElementById("current").textContent = value;
+    if (value.length < 17) {
+        document.getElementById("current").textContent = value;
+    }
+    
 }
 
 function dot() {
@@ -131,18 +141,22 @@ function operatorBtn(op) {
 
     let cur = document.getElementById("current").textContent;
     let mem = document.getElementById("memory").textContent;
-    
-    if (!mem) {
-        document.getElementById("memory").textContent = cur;
-        document.getElementById("current").textContent = '';
-    } else if (mem && cur && op) {
-        equalBtn();
-        document.getElementById("memory").textContent = document.getElementById("current").textContent;
-        document.getElementById("current").textContent = '';
-    }
 
-    document.getElementById("current").classList.remove("result");
-    document.getElementById("operator").textContent = op;
+    if (cur !== 'Error') {
+
+        if (!mem) {
+            document.getElementById("memory").textContent = cur;
+            document.getElementById("current").textContent = '';
+        } else if (mem && cur && op) {
+            equalBtn();
+            document.getElementById("memory").textContent = document.getElementById("current").textContent;
+            document.getElementById("current").textContent = '';
+        }
+
+        document.getElementById("current").classList.remove("result");
+        document.getElementById("operator").textContent = op;
+    }     
+        
 }
 
 function equalBtn() {
@@ -186,6 +200,10 @@ function backspace() {
         });
 
         document.getElementById("current").textContent = string;
+    }
+
+    if (string === 'Error') {
+        clear();
     }
 }
 
