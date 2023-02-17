@@ -6,7 +6,6 @@ function operate (num1, num2, operator) {
     if (num2 === 0 && operator === '/') {
         return 'Error';
     } else {
-    
         if (operator === '+') return (num1 + num2);
         if (operator === '-') return (num1 - num2);
         if (operator === '*') return (num1 * num2);
@@ -17,12 +16,12 @@ function operate (num1, num2, operator) {
 }
 
 function start () { 
-    console.log('start')
-    
+
     let numBtn = document.querySelectorAll(".number");
 
     numBtn.forEach((btn) => {
         btn.addEventListener("click", function() {
+            playBeep();
             displayNumber(btn.value);
             btn.blur();
         });        
@@ -39,11 +38,11 @@ function start () {
             operatorBtn(btn.value);
             btn.blur();})
     });
-
     
     document.getElementById("percent").addEventListener("click", function() {
-        console.log('aaa')
         let num1 = document.getElementById("current").textContent;
+        playBeep();
+
         if (num1 != 'Error') {
             document.getElementById("current").textContent = operate(num1, '', '%');
             document.getElementById("percent").blur();
@@ -55,53 +54,51 @@ function start () {
     document.getElementById("clear").addEventListener("click", clear);
 
     document.getElementById("backspace").addEventListener("click", backspace);
-
-    console.log('fim')
 }
 
 function keyboardUse (e) {
+
     let keycode = e.keyCode;
     let value;
 
     switch (keycode) {
         case 48: case 96: 
-            {value = 0; break;}
+            {value = 0; playBeep(); break;}
         case 49: case 97:
-            {value = 1; break;}
+            {value = 1; playBeep(); break;}
         case 50: case 98:
-            {value = 2; break;}
+            {value = 2; playBeep(); break;}
         case 51: case 99:
-            {value = 3; break;}
+            {value = 3; playBeep(); break;}
         case 52: case 100:
-            {value = 4; break;}
+            {value = 4; playBeep(); break;}
         case 53: case 101:
-            {value = 5; break;}
+            {value = 5; playBeep(); break;}
         case 54: case 102:
-            {value = 6; break;}
+            {value = 6; playBeep(); break;}
         case 55: case 103:
-            {value = 7; break;}
+            {value = 7; playBeep(); break;}
         case 56: case 104:
-            {value = 8; break;}
+            {value = 8; playBeep(); break;}
         case 57: case 105:
-            {value = 9; break;}
+            {value = 9; playBeep(); break;}
         case 108:
-            {dot(); break;} //dot
+            {dot(); playBeep(); break;} //dot
         case 106:
-            {operatorBtn('*'); break;}
+            {operatorBtn('*'); playBeep(); break;}
         case 107:
-            {operatorBtn('+'); break;}
+            {operatorBtn('+'); playBeep(); break;}
         case 109:
-            {operatorBtn('-'); break;}
+            {operatorBtn('-'); playBeep(); break;}
         case 111:
-            {operatorBtn('/'); break;}
+            {operatorBtn('/'); playBeep(); break;}
         case 13:
-            {equalBtn(); break;} //equal
+            {equalBtn(); playBeep(); break;} //equal
         case 8:
-            {backspace(); break;} //backspace
+            {backspace(); playBeep(); break;} //backspace
         };
 
         if (value >= 0 && value <= 9) {
-            console.log('teste')
             displayNumber(value);
         }
 }
@@ -121,11 +118,12 @@ function displayNumber (btnValue) {
     if (value.length < 17) {
         document.getElementById("current").textContent = value;
     }
-    
 }
 
 function dot() {
     let current = document.getElementById("current").textContent;
+    playBeep();
+
     document.getElementById("dot").blur();
 
     if (!current.includes('.')) {
@@ -141,6 +139,7 @@ function operatorBtn(op) {
 
     let cur = document.getElementById("current").textContent;
     let mem = document.getElementById("memory").textContent;
+    playBeep();
 
     if (cur !== 'Error') {
 
@@ -156,13 +155,13 @@ function operatorBtn(op) {
         document.getElementById("current").classList.remove("result");
         document.getElementById("operator").textContent = op;
     }     
-        
 }
 
 function equalBtn() {
     let cur = document.getElementById("current").textContent;
     let mem = document.getElementById("memory").textContent;
     let op = document.getElementById("operator").textContent;
+    playBeep();
 
     document.getElementById("equal").blur();
 
@@ -179,12 +178,14 @@ function clear() {
     document.getElementById("current").textContent = '';
     document.getElementById("memory").textContent = '';
     document.getElementById("operator").textContent = '';
+    playBeep();
 
     document.getElementById("clear").blur();
 }
 
 function backspace() {
     let string = document.getElementById("current").textContent;
+    playBeep();
 
     document.getElementById("backspace").blur();
 
@@ -205,6 +206,14 @@ function backspace() {
     if (string === 'Error') {
         clear();
     }
+}
+
+function playBeep() {
+
+    const audio = document.getElementById("audio");
+
+    audio.currentTime = 0;
+    audio.play();
 }
 
 start();
