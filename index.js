@@ -41,11 +41,21 @@ function start () {
     
     document.getElementById("percent").addEventListener("click", function() {
         let num1 = document.getElementById("current").textContent;
+        let value;
         playBeep();
 
+        document.getElementById("percent").blur();
+
         if (num1 != 'Error') {
-            document.getElementById("current").textContent = operate(num1, '', '%');
-            document.getElementById("percent").blur();
+
+            value = operate(num1, '', '%');
+
+            if (value.toString().length > 17) {
+                document.getElementById("current").textContent = value.toFixed(15);
+            } else {
+                document.getElementById("current").textContent = value;
+            }
+            document.getElementById("current").classList.add("result");
         }
     });
 
@@ -127,7 +137,8 @@ function dot() {
     document.getElementById("dot").blur();
 
     if (!current.includes('.')) {
-        displayNumber('.')
+        document.getElementById("current").classList.remove("result");
+        displayNumber('.');
     }
 
     if (!current) {
@@ -161,13 +172,21 @@ function equalBtn() {
     let cur = document.getElementById("current").textContent;
     let mem = document.getElementById("memory").textContent;
     let op = document.getElementById("operator").textContent;
+    let value = 0;
     playBeep();
 
     document.getElementById("equal").blur();
 
     if (cur && mem && op) {
-       
-        document.getElementById("current").textContent = operate(mem, cur, op);
+        
+        value = operate(mem, cur, op);
+
+        if (value.length > 17) {
+            document.getElementById("current").textContent = value.toFixed(17);
+        } else {
+            document.getElementById("current").textContent = value;
+        }
+
         document.getElementById("memory").textContent = '';
         document.getElementById("current").classList.add("result");
 
